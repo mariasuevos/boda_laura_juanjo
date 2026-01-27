@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import fotoportada from '../assets/portada.png';
 
 const Hero = () => {
     return (
         <div className="relative h-screen w-full overflow-hidden bg-stone-900 text-white">
             {/* Background Image Placeholder */}
-            <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)' }}></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: `url(${fotoportada})` }}></div>
 
             <div className="absolute inset-0 bg-black/40" />
 
@@ -25,7 +26,7 @@ const Hero = () => {
                     transition={{ duration: 1, delay: 0.3 }}
                     className="mb-6 text-6xl md:text-8xl font-serif tracking-tight text-white"
                 >
-                    Laura & Juanjo
+                    Juanjo & Laura
                 </motion.h1>
 
                 <motion.p

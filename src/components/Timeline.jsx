@@ -20,22 +20,22 @@ const TimelineItem = ({ time, title, description, icon: Icon }) => (
 const Timeline = () => {
     const events = [
         {
-            time: '12:30',
+            time: '18:00',
             title: 'Ceremonia',
-            description: 'Iglesia de San Juan, Plaza Mayor',
+            description: 'Catedral de Albacete',
         },
         {
-            time: '14:00',
+            time: '20:00',
             title: 'Cóctel de Bienvenida',
-            description: 'Jardines del Pazo',
+            description: 'Parador de Albacete',
         },
         {
-            time: '15:30',
+            time: '22:00',
             title: 'Banquete',
-            description: 'Salón Principal',
+            description: 'Parador de Albacete',
         },
         {
-            time: '19:00',
+            time: '23:00',
             title: 'Fiesta',
             description: 'Barra libre y baile hasta que el cuerpo aguante',
         },
