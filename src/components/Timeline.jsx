@@ -1,18 +1,25 @@
 import React from 'react';
-import { Calendar, MapPin, Clock } from 'lucide-react';
+import { Heart, Wine, Church, Martini, Utensils, Music, PartyPopper } from 'lucide-react';
 
 const TimelineItem = ({ time, title, description, icon: Icon }) => (
-    <div className="relative flex items-start pb-12 last:pb-0">
-        <div className="absolute left-0 top-0 -ml-[9px] h-full w-px bg-stone-300 last:hidden"></div>
-        <div className="absolute left-0 top-2 -ml-[13px] flex h-6 w-6 items-center justify-center rounded-full bg-stone-100 border border-stone-300">
-            <div className="h-2 w-2 rounded-full bg-stone-400"></div>
+    <div className="relative flex items-start pb-16 last:pb-0 group">
+        {/* Vertical Line */}
+        <div className="absolute left-[28px] top-0 h-full w-px bg-[#dcd6c8] group-last:hidden"></div>
+
+        {/* Icon Circle */}
+        <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border-2 border-[#6b705c] shadow-sm shrink-0">
+            <Icon className="h-6 w-6 text-[#6b705c]" strokeWidth={1.5} />
         </div>
-        <div className="ml-8">
-            <div className="flex items-center mb-1">
-                <span className="font-serif text-xl text-stone-800">{time}</span>
+
+        {/* Content */}
+        <div className="ml-8 pt-1">
+            <div className="flex items-center mb-2">
+                <span className="inline-block px-3 py-1 bg-[#3a4030] text-white text-xs font-medium rounded-md tracking-wider">
+                    {time}
+                </span>
             </div>
-            <h3 className="text-lg font-medium text-stone-700 mb-2">{title}</h3>
-            <p className="text-stone-600 font-light">{description}</p>
+            <h3 className="text-xl font-serif text-stone-800 mb-1">{title}</h3>
+            <p className="text-stone-600 font-light text-sm">{description}</p>
         </div>
     </div>
 );
@@ -20,39 +27,68 @@ const TimelineItem = ({ time, title, description, icon: Icon }) => (
 const Timeline = () => {
     const events = [
         {
+            time: '17:00',
+            title: 'Llegada de invitados',
+            description: 'Recepción y bienvenida en la finca',
+            icon: Heart
+        },
+        {
             time: '18:00',
             title: 'Ceremonia',
-            description: 'Catedral de Albacete',
+            description: 'El momento más especial del día',
+            icon: Church
         },
         {
-            time: '20:00',
-            title: 'Cóctel de Bienvenida',
-            description: 'Parador de Albacete',
+            time: '19:00',
+            title: 'Cóctel',
+            description: 'Aperitivos y bebidas en los jardines',
+            icon: Martini
         },
         {
-            time: '22:00',
+            time: '21:00',
             title: 'Banquete',
-            description: 'Parador de Albacete',
+            description: 'Cena y celebración',
+            icon: Utensils
         },
         {
-            time: '23:00',
+            time: '00:00',
             title: 'Fiesta',
-            description: 'Barra libre y baile hasta que el cuerpo aguante',
+            description: '¡A bailar hasta el amanecer!',
+            icon: Music
+        },
+        {
+            time: '03:00',
+            title: 'Fin de fiesta',
+            description: 'Despedida y buenos recuerdos',
+            icon: PartyPopper
         },
     ];
 
     return (
-        <section className="py-24 bg-white">
-            <div className="container mx-auto px-4 max-w-2xl">
+        <section className="py-12 bg-[#f0ebe0]">
+            <div className="container mx-auto px-4 max-w-xl">
+                {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-serif text-stone-800 mb-4">El Gran Día</h2>
-                    <p className="text-stone-500 italic">Sábado, 19 de Septiembre de 2026</p>
+                    <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">Programa del día</h2>
+                    <p className="text-stone-500 font-serif italic">Lo que tenemos preparado para vosotros</p>
                 </div>
 
-                <div className="pl-4 md:pl-0">
+                {/* Timeline */}
+                <div className="pl-2 md:pl-0">
                     {events.map((event, index) => (
                         <TimelineItem key={index} {...event} />
                     ))}
+                </div>
+
+                {/* Decorative Divider */}
+                <div className="flex items-center justify-center opacity-40 mt-20">
+                    <div className="h-px w-24 bg-stone-400"></div>
+                    <div className="mx-4 text-stone-500">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0L24 12L12 24L0 12L12 0Z" />
+                        </svg>
+                    </div>
+                    <div className="h-px w-24 bg-stone-400"></div>
                 </div>
             </div>
         </section>

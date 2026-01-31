@@ -1,9 +1,11 @@
 import React from 'react';
 import Hero from './components/Hero';
 import Countdown from './components/Countdown';
+import LocationDetails from './components/LocationDetails';
 import Timeline from './components/Timeline';
-import RSVPForm from './components/RSVPForm';
+import Footer from './components/Footer';
 import EnvelopeOverlay from './components/EnvelopeOverlay';
+import RSVPForm from './components/RSVPForm';
 
 function App() {
   return (
@@ -12,12 +14,10 @@ function App() {
       <main>
         <Hero />
         <Countdown />
+        <LocationDetails />
         <Timeline />
         <RSVPForm />
-
-        <footer className="py-8 text-center text-stone-500 text-sm">
-          <p>Boda Laura & Juanjo — 2026</p>
-        </footer>
+        <Footer />
       </main>
     </div>
   );

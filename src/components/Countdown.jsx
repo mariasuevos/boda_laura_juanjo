@@ -25,19 +25,24 @@ const Countdown = () => {
         return () => clearTimeout(timer);
     });
 
+    // Helper para añadir cero a la izquierda
+    const pad = (num) => {
+        return num < 10 ? `0${num}` : num;
+    };
+
     const timerComponents = [];
 
     Object.keys(timeLeft).forEach((interval) => {
-        if (!timeLeft[interval]) {
+        if (timeLeft[interval] === undefined) {
             return;
         }
 
         timerComponents.push(
-            <div key={interval} className="flex flex-col items-center mx-4 md:mx-8">
-                <span className="text-4xl md:text-6xl font-serif text-stone-800">
-                    {timeLeft[interval]}
+            <div key={interval} className="border border-white/30 rounded-lg p-6 flex flex-col items-center justify-center aspect-square bg-white/5 backdrop-blur-sm">
+                <span className="text-4xl md:text-5xl font-serif text-white">
+                    {pad(timeLeft[interval])}
                 </span>
-                <span className="text-sm uppercase tracking-widest text-stone-500 mt-2">
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/70 mt-2">
                     {interval}
                 </span>
             </div>
@@ -45,10 +50,23 @@ const Countdown = () => {
     });
 
     return (
-        <div className="py-20 bg-stone-50">
+        <div className="py-10 bg-[#6b705c]">
             <div className="container mx-auto px-4">
-                <div className="flex flex-wrap justify-center items-center">
-                    {timerComponents.length ? timerComponents : <span>¡Es hoy!</span>}
+                <div className="flex flex-col items-center text-center mb-12">
+                    <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">Cuenta atrás</h2>
+                    <p className="text-xs md:text-sm text-white/80 font-serif uppercase tracking-widest">
+                        Para el día más especial de nuestras vidas
+                    </p>
+                </div>
+
+                <div className="max-w-4xl mx-auto">
+                    {timerComponents.length ? (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                            {timerComponents}
+                        </div>
+                    ) : (
+                        <span className="text-4xl text-white font-serif">¡Es hoy!</span>
+                    )}
                 </div>
             </div>
         </div>
