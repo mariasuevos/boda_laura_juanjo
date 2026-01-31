@@ -1,0 +1,16 @@
+@reference "../../index.css";
+.envelope-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-boda-crema overflow-hidden;
+}
+
+.envelope-container {
+    @apply relative w-full h-full;
+}
+
+.envelope-video {
+    @apply w-full h-full object-cover;
+}
+
+.envelope-button {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-full cursor-pointer hover:scale-105 transition-transform;
+}

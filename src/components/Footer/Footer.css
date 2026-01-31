@@ -1,0 +1,20 @@
+@reference "../../index.css";
+.footer-section {
+    @apply bg-[#3a4030] text-white py-10;
+}
+
+.footer-container {
+    @apply container mx-auto px-4 flex flex-col items-center justify-center text-center;
+}
+
+.footer-icon {
+    @apply w-6 h-6 mb-8 text-white/80;
+}
+
+.footer-title {
+    @apply text-4xl md:text-5xl font-serif mb-4;
+}
+
+.footer-text {
+    @apply text-stone-300 font-serif text-lg mb-16;
+}

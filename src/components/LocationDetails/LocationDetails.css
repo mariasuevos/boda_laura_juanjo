@@ -1,0 +1,89 @@
+@reference "../../index.css";
+.location-section {
+    @apply py-10 bg-[#f0ebe0];
+}
+
+.location-container {
+    @apply container mx-auto px-4;
+}
+
+.location-header {
+    @apply text-center mb-12;
+}
+
+.location-title {
+    @apply text-4xl md:text-5xl font-serif text-stone-800 mb-4;
+}
+
+.location-subtitle {
+    @apply text-stone-500 font-serif italic;
+}
+
+.location-card {
+    @apply max-w-md mx-auto bg-white rounded-xl shadow-xl overflow-hidden mb-12;
+}
+
+.location-card-content {
+    @apply p-8 flex flex-col items-center text-center;
+}
+
+.location-icon-container {
+    @apply w-16 h-16 bg-[#fdfaf5] rounded-full flex items-center justify-center mb-6;
+}
+
+.location-icon-pin {
+    @apply w-8 h-8 text-boda-oliva;
+    /* Ensure 'text-boda-oliva' is defined or use hex code if needed. Assuming it works as is. */
+}
+
+.location-name {
+    @apply text-2xl font-serif text-stone-800 mb-2;
+}
+
+.location-place {
+    @apply text-xl text-stone-600 font-serif mb-4;
+}
+
+.location-time-container {
+    @apply flex items-center text-stone-500 mb-8;
+}
+
+.location-icon-clock {
+    @apply w-4 h-4 mr-2;
+}
+
+.location-time-text {
+    @apply text-sm uppercase tracking-widest;
+}
+
+.location-image-container {
+    @apply w-full h-48 bg-stone-200 rounded-lg mb-6 overflow-hidden relative;
+}
+
+.location-image {
+    @apply w-full h-full object-cover;
+}
+
+.location-map-container {
+    @apply w-full h-48 bg-stone-100 rounded-lg mb-6 overflow-hidden;
+}
+
+.location-buttons {
+    @apply w-full space-y-3;
+}
+
+.location-button {
+    @apply w-full py-3 bg-[#fdfaf5] border border-[#dcd6c8] text-stone-600 font-serif uppercase tracking-widest text-sm rounded hover:bg-[#f0ebe0] transition-colors flex items-center justify-center;
+}
+
+.location-divider {
+    @apply flex items-center justify-center opacity-40;
+}
+
+.location-divider-line {
+    @apply h-px w-24 bg-stone-400;
+}
+
+.location-divider-icon {
+    @apply mx-4 text-stone-500;
+}

@@ -1,0 +1,28 @@
+@reference "../../index.css";
+.hero-section {
+    @apply relative h-screen w-full overflow-hidden bg-stone-900 text-white;
+}
+
+.hero-background {
+    @apply absolute inset-0 bg-cover bg-center opacity-60;
+}
+
+.hero-overlay {
+    @apply absolute inset-0 bg-black/40;
+}
+
+.hero-content {
+    @apply relative z-10 flex h-full flex-col items-center justify-center text-center px-4;
+}
+
+.hero-subtitle {
+    @apply mb-4 text-xl font-light tracking-[0.2em] uppercase text-stone-200;
+}
+
+.hero-title {
+    @apply mb-6 text-6xl md:text-8xl font-serif tracking-tight text-white;
+}
+
+.hero-date {
+    @apply text-2xl font-light text-stone-100;
+}
