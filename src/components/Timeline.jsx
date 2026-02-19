@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Wine, Church, Martini, Utensils, Music, PartyPopper } from 'lucide-react';
+import { Heart, Wine, Church, Martini, Utensils, Music, Bus, PartyPopper } from 'lucide-react';
 
 const TimelineItem = ({ time, title, description, icon: Icon }) => (
     <div className="relative flex items-start pb-16 last:pb-0 group">
@@ -24,44 +24,52 @@ const TimelineItem = ({ time, title, description, icon: Icon }) => (
     </div>
 );
 
+
+// 18:00 Ceremonia - Catedral - Y comieron perdices
+
+// 20:00 Bienvenida y cóctel -Parador - Abrazos, besos y muchas sonrisas
+
+// 22:00 Cena - Parador - ¡que no os falte de ná!
+
+// 00:00 Barra libre ¡Que empiece la fiesta!
+
+// 5:00 Fin, fin, fin ¡Cada mochuelo a su olivo!
+
 const Timeline = () => {
     const events = [
         {
-            time: '17:00',
-            title: 'Llegada de invitados',
-            description: 'Recepción y bienvenida en la finca',
-            icon: Heart
-        },
-        {
             time: '18:00',
             title: 'Ceremonia',
-            description: 'El momento más especial del día',
+            location: 'Catedral de Albacete',
+            description: 'Y comieron perdices',
             icon: Church
         },
         {
-            time: '19:00',
-            title: 'Cóctel',
-            description: 'Aperitivos y bebidas en los jardines',
-            icon: Martini
+            time: '20:00',
+            title: 'Bienvenida y cóctel',
+            location: 'Parador de Albacete',
+            description: 'Calentando motores',
+            icon: Heart
         },
         {
-            time: '21:00',
-            title: 'Banquete',
-            description: 'Cena y celebración',
+            time: '22:00',
+            title: 'Cena',
+            location: 'Parador de Albacete',
+            description: '¡que no os falte de ná!',
             icon: Utensils
         },
         {
             time: '00:00',
-            title: 'Fiesta',
-            description: '¡A bailar hasta el amanecer!',
-            icon: Music
-        },
-        {
-            time: '03:00',
-            title: 'Fin de fiesta',
-            description: 'Despedida y buenos recuerdos',
+            title: 'Barra libre',
+            description: '¡Que empiece la fiesta!',
             icon: PartyPopper
         },
+        {
+            time: '06:00',
+            title: 'Fin, fin, fin',
+            description: '¡Cada mochuelo a su olivo!',
+            icon: Bus
+        }
     ];
 
     return (
@@ -69,7 +77,7 @@ const Timeline = () => {
             <div className="container mx-auto px-4 max-w-xl">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">Programa del día</h2>
+                    <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">Así será nuestro día</h2>
                     <p className="text-stone-500 font-serif italic">Lo que tenemos preparado para vosotros</p>
                 </div>
 
@@ -80,16 +88,6 @@ const Timeline = () => {
                     ))}
                 </div>
 
-                {/* Decorative Divider */}
-                <div className="flex items-center justify-center opacity-40 mt-20">
-                    <div className="h-px w-24 bg-stone-400"></div>
-                    <div className="mx-4 text-stone-500">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0L24 12L12 24L0 12L12 0Z" />
-                        </svg>
-                    </div>
-                    <div className="h-px w-24 bg-stone-400"></div>
-                </div>
             </div>
         </section>
     );

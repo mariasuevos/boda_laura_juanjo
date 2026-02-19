@@ -4,7 +4,8 @@ const Countdown = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     function calculateTimeLeft() {
-        const difference = +new Date("2026-09-19") - +new Date();
+        const difference = +new Date("2026-09-19T18:00:00") - +new Date();
+        // const difference = 10;
         let timeLeft = {};
 
         if (difference > 0) {
@@ -13,6 +14,14 @@ const Countdown = () => {
                 horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
                 minutos: Math.floor((difference / 1000 / 60) % 60),
                 segundos: Math.floor((difference / 1000) % 60),
+            };
+        }
+        else {
+            timeLeft = {
+                días: 0,
+                horas: 0,
+                minutos: 0,
+                segundos: 0,
             };
         }
         return timeLeft;
@@ -55,21 +64,18 @@ const Countdown = () => {
                 <div className="flex flex-col items-center text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">Cuenta atrás</h2>
                     <p className="text-xs md:text-sm text-white/80 font-serif uppercase tracking-widest">
-                        Para el día más especial de nuestras vidas
+                        Para el momento más especial de nuestras vidas
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto">
-                    {timerComponents.length ? (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                            {timerComponents}
-                        </div>
-                    ) : (
-                        <span className="text-4xl text-white font-serif">¡Es hoy!</span>
-                    )}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                        {timerComponents}
+                    </div>
                 </div>
             </div>
         </div>
+
     );
 };
 

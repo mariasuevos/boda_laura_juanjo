@@ -32,12 +32,11 @@ const EnvelopeOverlay = () => {
                 >
                     <div className="relative w-full h-full">
                         {/* Video que cubre toda la pantalla */}
-                        <video
+                        <video muted
                             ref={videoRef}
                             src={videoSobre}
                             className="w-full h-full object-cover"
                             playsInline
-                        // Opcional: poster={sobreCerrado} si quieres una imagen de carga
                         />
 
                         {/* Botón del sello - Solo visible antes de reproducir */}
@@ -48,7 +47,6 @@ const EnvelopeOverlay = () => {
                                 style={{
                                     width: '30vmin',
                                     height: '30vmin',
-                                    // Debug: background: 'rgba(255,0,0,0.2)' 
                                 }}
                                 aria-label="Abrir invitación"
                             />
