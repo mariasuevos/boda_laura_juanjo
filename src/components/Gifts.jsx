@@ -32,7 +32,7 @@ const Gifts = () => {
                     >
                         <div className="p-6 pt-0 text-stone-600 font-serif border-t border-stone-300/50 flex flex-col items-center justify-center text-center">
                             <p className="mb-4 text-xs tracking-widest uppercase text-stone-400 font-sans mt-6">IBAN</p>
-                            <p className="font-mono text-base md:text-xl text-[#3a4030] tracking-wider select-all pb-2">ES00 0000 0000 0000 0000 0000</p>
+                            <p className="font-mono text-base md:text-xl text-[#3a4030] tracking-wider select-all pb-2">ES61 3190 0076 1761 8950 5123</p>
                         </div>
                     </div>
                 </div>

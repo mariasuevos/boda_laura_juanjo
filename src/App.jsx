@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from './components/Hero';
 import Countdown from './components/Countdown';
 import LocationDetails from './components/Location-ceremonia';
@@ -11,9 +11,14 @@ import Alojamiento from './components/alojamiento';
 import Divider from './components/divider';
 
 function App() {
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900">
-      {/* <EnvelopeOverlay /> */}
+      <EnvelopeOverlay />
       <main>
         <Hero />
         <Countdown />

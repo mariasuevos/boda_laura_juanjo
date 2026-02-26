@@ -10,6 +10,8 @@ const RSVPForm = () => {
         needsTransport: 'no',
         transportRoutes: []
     }]);
+    const [message, setMessage] = React.useState('');
+    const [popupStatus, setPopupStatus] = React.useState(null);
 
     const handleCompanionChange = (hasCompanion) => {
         const count = hasCompanion ? 2 : 1;
@@ -127,14 +129,57 @@ const RSVPForm = () => {
                     </p>
                 </div>
 
-                <form className="bg-white p-8 md:p-12 rounded-xl shadow-lg space-y-8" onSubmit={(e) => {
+                <form className="bg-white p-8 md:p-12 rounded-xl shadow-lg space-y-8" onSubmit={async (e) => {
                     e.preventDefault();
-                    console.log('Form data:', {
-                        guestCount,
-                        guestDetails
-                    });
-                    // Here you would typically send the data
-                    alert('Asistencia confirmada (check console for data)');
+
+                    const mainGuest = guestDetails[0];
+                    if (!mainGuest.name || !mainGuest.phone) {
+                        setPopupStatus({ type: 'error', message: 'Por favor, añade tu nombre y teléfono para poder confirmar tu asistencia.' });
+                        return;
+                    }
+
+                    if (guestCount > 1) {
+                        const companion = guestDetails[1];
+                        if (!companion || !companion.name || !companion.phone) {
+                            setPopupStatus({ type: 'error', message: '¡No olvides añadir el nombre y teléfono de tu acompañante!' });
+                            return;
+                        }
+                    }
+
+                    try {
+                        const response = await fetch('/api/rsvp', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                guestCount,
+                                guestDetails,
+                                message
+                            }),
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            setPopupStatus({ type: 'success', message: '¡Muchísimas gracias por acompañarnos en este día tan especial! Tu asistencia ha sido confirmada.' });
+                            // Opcional: limpiar el formulario aquí
+                            setGuestCount(1);
+                            setCurrentGuestIndex(0);
+                            setGuestDetails([{
+                                allergies: [],
+                                allergyOther: '',
+                                needsTransport: 'no',
+                                transportRoutes: []
+                            }]);
+                            setMessage('');
+                        } else {
+                            setPopupStatus({ type: 'error', message: result.error || 'Hubo un error al enviar tu confirmación. Intenta de nuevo más tarde.' });
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        setPopupStatus({ type: 'error', message: 'Error de conexión. Revisa si estás conectado a internet.' });
+                    }
                 }}>
 
                     {/* Nombre */}
@@ -146,17 +191,35 @@ const RSVPForm = () => {
                             className="w-full px-4 py-3 bg-[#fdfaf5] border border-[#e6e2d6] rounded-lg focus:ring-1 focus:ring-[#6b705c] focus:border-[#6b705c] outline-none transition-colors text-stone-700 placeholder:text-stone-400"
                             placeholder="Tu nombre"
                             required
+                            value={guestDetails[0]?.name || ''}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                setGuestDetails(prev => {
+                                    const newDetails = [...prev];
+                                    newDetails[0].name = value;
+                                    return newDetails;
+                                });
+                            }}
                         />
                     </div>
 
                     {/* Telefono */}
                     <div>
-                        <label htmlFor="email" className="block text-stone-800 font-serif font-medium mb-2">Telefono *</label>
+                        <label htmlFor="phone" className="block text-stone-800 font-serif font-medium mb-2">Telefono *</label>
                         <input
-                            type="email"
-                            id="email"
+                            type="tel"
+                            id="phone"
                             className="w-full px-4 py-3 bg-[#fdfaf5] border border-[#e6e2d6] rounded-lg focus:ring-1 focus:ring-[#6b705c] focus:border-[#6b705c] outline-none transition-colors text-stone-700 placeholder:text-stone-400"
                             placeholder="666666666"
+                            value={guestDetails[0]?.phone || ''}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                setGuestDetails(prev => {
+                                    const newDetails = [...prev];
+                                    newDetails[0].phone = value;
+                                    return newDetails;
+                                });
+                            }}
                         />
                     </div>
 
@@ -355,6 +418,8 @@ const RSVPForm = () => {
                             rows="4"
                             className="w-full px-4 py-3 bg-[#fdfaf5] border border-[#e6e2d6] rounded-lg focus:ring-1 focus:ring-[#6b705c] focus:border-[#6b705c] outline-none transition-colors text-stone-700 placeholder:text-stone-400 resize-none"
                             placeholder="Escríbenos unas palabras..."
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
                         ></textarea>
                     </div>
 
@@ -369,6 +434,35 @@ const RSVPForm = () => {
 
                 </form>
             </div>
+
+            {/* Popup Modal */}
+            {popupStatus && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 backdrop-blur-sm px-4">
+                    <div className="bg-[#fcf9f2] rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl transform transition-all">
+                        {popupStatus.type === 'success' ? (
+                            <div className="w-16 h-16 bg-[#e6e2d6] rounded-full flex items-center justify-center mx-auto mb-4 text-[#3a4030]">
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                        ) : (
+                            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
+                                <AlertTriangle className="w-8 h-8" />
+                            </div>
+                        )}
+                        <h3 className="text-2xl font-serif text-stone-800 mb-2">
+                            {popupStatus.type === 'success' ? '¡Gracias!' : 'Faltan datos'}
+                        </h3>
+                        <p className="text-stone-600 mb-6">
+                            {popupStatus.message}
+                        </p>
+                        <button
+                            onClick={() => setPopupStatus(null)}
+                            className="bg-[#3a4030] text-white px-8 py-3 rounded-lg hover:bg-[#2c3124] transition-colors font-medium shadow-md"
+                        >
+                            {popupStatus.type === 'success' ? 'Cerrar' : 'Entendido'}
+                        </button>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
