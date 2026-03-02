@@ -55,7 +55,7 @@ const Timeline = () => {
             time: '22:00',
             title: 'Cena',
             location: 'Parador de Albacete',
-            description: '¡que no os falte de ná!',
+            description: '¡Que no os falte de ná!',
             icon: Utensils
         },
         {

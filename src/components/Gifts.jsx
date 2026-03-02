@@ -22,7 +22,7 @@ const Gifts = () => {
                         onClick={() => setIsOpen(!isOpen)}
                         className="w-full flex items-center justify-between p-6 hover:bg-[#dcd8cc] transition-colors text-stone-700"
                     >
-                        <span className="font-serif text-lg font-medium">Aportación</span>
+                        <span className="font-serif text-lg font-medium">Cuenta</span>
                         {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                     </button>
 

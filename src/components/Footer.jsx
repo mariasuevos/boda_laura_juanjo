@@ -13,7 +13,7 @@ const Footer = () => {
                     19 de Septiembre de 2026
                 </p>
                 <p className="text-stone-300 italic font-serif text-lg mb-8">
-                    Aquí comienza nuestra historia y queremos que formeis parte de ella
+                    Aquí comienza nuestra historia y queremos que forméis parte de ella
                 </p>
                 <Heart className="w-6 h-6 mb-4 text-white/80" strokeWidth={1.5} />
             </div>

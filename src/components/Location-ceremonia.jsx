@@ -31,8 +31,8 @@ const LocationDetails = () => {
                         </div>
 
                         {/* Location Image */}
-                        <div className="w-full h-48 bg-stone-200 rounded-lg mb-6 overflow-hidden relative">
-                            <img src={Catedral} alt="Parador de Albacete" className="w-full h-full object-cover" />
+                        <div className="w-full h-64 bg-transparent mb-6 flex justify-center items-center">
+                            <img src={Catedral} alt="Catedral de Albacete" className="h-full w-auto object-contain rounded-lg" />
                         </div>
 
                         {/* Buttons */}
@@ -69,8 +69,8 @@ const LocationDetails = () => {
                         </div>
 
                         {/* Location Image */}
-                        <div className="w-full h-48 bg-stone-200 rounded-lg mb-6 overflow-hidden relative">
-                            <img src={Parador} alt="Parador de Albacete" className="w-full h-full object-cover" />
+                        <div className="w-full h-64 bg-transparent mb-6 flex justify-center items-center">
+                            <img src={Parador} alt="Parador de Albacete" className="h-full w-auto object-contain rounded-lg" />
                         </div>
 
                         {/* Map */}
