@@ -41,14 +41,14 @@ const Timeline = () => {
             time: '18:00',
             title: 'Ceremonia',
             location: 'Catedral de Albacete',
-            description: 'Y comieron perdices',
+            description: '¡Y comieron perdices!',
             icon: Church
         },
         {
             time: '20:00',
             title: 'Bienvenida y cóctel',
             location: 'Parador de Albacete',
-            description: 'Calentando motores',
+            description: '¡Calentando motores!',
             icon: Heart
         },
         {

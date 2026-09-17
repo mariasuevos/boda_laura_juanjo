@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - API_SECRET_KEY=${API_SECRET_KEY}
     ports:
       - "80:80"
     depends_on:

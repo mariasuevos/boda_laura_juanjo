@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart } from 'lucide-react';
+import { Wine } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -13,9 +13,12 @@ const Footer = () => {
                     19 de Septiembre de 2026
                 </p>
                 <p className="text-stone-300 italic font-serif text-lg mb-8">
-                    Aquí comienza nuestra historia y queremos que forméis parte de ella
+                    ¡Hay motivo!
                 </p>
-                <Heart className="w-6 h-6 mb-4 text-white/80" strokeWidth={1.5} />
+                <div className="flex items-center justify-center mb-4">
+                    <Wine className="w-6 h-6 text-white/80 translate-x-1 rotate-12" strokeWidth={1.5} />
+                    <Wine className="w-6 h-6 text-white/80 -translate-x-1 -rotate-12" strokeWidth={1.5} />
+                </div>
             </div>
         </footer>
     );

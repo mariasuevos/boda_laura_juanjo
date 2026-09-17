@@ -204,8 +204,7 @@ const RSVPForm = () => {
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">Confirma tu asistencia</h2>
                     <p className="text-stone-500 font-serif italic">
-                        Esperamos contar contigo<br />
-                        <span className="block mt-1">¡No puedes faltar!</span>
+                        ¡No puedes faltar!
                     </p>
                 </div>
 
@@ -241,7 +240,7 @@ const RSVPForm = () => {
                         const response = await fetch('/api/rsvp', {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json',
+                                'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
                                 guestCount,

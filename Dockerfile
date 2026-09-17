@@ -12,9 +12,11 @@ RUN npm run build
 # Stage 2: Serve
 FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
 COPY --from=build /app/dist /usr/share/nginx/html
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/entrypoint.sh"]

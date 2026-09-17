@@ -8,6 +8,15 @@ const Hero = () => {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.playbackRate = 0.5;
+            // Attempt to force play on mount for iOS
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(_error => {
+                    // Auto-play was prevented by the browser
+                    // There's not much we can do silently here besides wait for user interaction,
+                    // but the muted+playsInline+autoPlay true attributes usually suffice.
+                });
+            }
         }
     }, []);
 
@@ -16,11 +25,11 @@ const Hero = () => {
             {/* Background Video */}
             <video
                 ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover object-[35%_center] opacity-60"
+                autoPlay={true}
+                loop={true}
+                muted={true}
+                playsInline={true}
+                className="absolute inset-0 w-full h-full object-cover object-[35%_center] opacity-60 pointer-events-none"
             >
                 <source src={VideoPortada} type="video/mp4" />
             </video>
@@ -44,9 +53,9 @@ const Hero = () => {
                     transition={{ duration: 1, delay: 0.3 }}
                     className="mb-6 text-6xl md:text-8xl font-serif tracking-tight text-white flex flex-col items-center gap-2 leading-none"
                 >
-                    <span>Juanjo</span>
+                    <span className="capitalize">Juanjo</span>
                     <span className="text-4xl md:text-6xl text-[#e6e2d6] font-light italic">&</span>
-                    <span>Laura</span>
+                    <span className="capitalize">Laura</span>
                 </motion.h1>
 
                 <motion.p

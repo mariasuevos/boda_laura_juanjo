@@ -1,0 +1,1 @@
+location /api/ { proxy_set_header authorization "${API_SECRET_KEY}"; proxy_set_header Host $host; }

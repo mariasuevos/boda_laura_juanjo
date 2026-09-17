@@ -14,7 +14,7 @@ const Gifts = () => {
                     Tres cosas hay en la vida: salud, dinero y amor. Afortunadamente, nos sobran salud y amor.
                 </p>
                 <p className="text-stone-600 font-serif italic mb-4 leading-relaxed max-w-lg mx-auto">
-                    Si quereis ayudarnos en la que nos falta...
+                    Si queréis ayudarnos en la que nos falta...
                 </p>
 
                 <div className="bg-[#e6e2d6] rounded-lg overflow-hidden transition-all duration-300">
@@ -31,7 +31,7 @@ const Gifts = () => {
                             }`}
                     >
                         <div className="p-6 pt-0 text-stone-600 font-serif border-t border-stone-300/50 flex flex-col items-center justify-center text-center">
-                            <p className="mb-4 text-xs tracking-widest uppercase text-stone-400 font-sans mt-6">IBAN</p>
+                            <p className="mb-4 text-xs tracking-widest uppercase text-stone-400 font-sans mt-6">Laura Chinchilla y Juanjo Alarcón</p>
                             <p className="font-mono text-base md:text-xl text-[#3a4030] tracking-wider select-all pb-2">ES61 3190 0076 1761 8950 5123</p>
                         </div>
                     </div>

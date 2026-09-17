@@ -4,6 +4,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const ExcelJS = require('exceljs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +28,31 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Boda API',
+            version: '1.0.0',
+            description: 'API Boda Laura & Juanjo',
+        },
+        components: {
+            securitySchemes: {
+                ApiKeyAuth: {
+                    type: 'apiKey',
+                    in: 'header',
+                    name: 'authorization',
+                    description: 'Introduzca la clave secreta de la API aquí',
+                }
+            }
+        },
+    },
+    apis: [__filename],
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const db = new sqlite3.Database(DB_PATH, (err) => {
     if (err) {
@@ -48,7 +76,12 @@ const db = new sqlite3.Database(DB_PATH, (err) => {
     }
 });
 
+
 app.post('/api/rsvp', (req, res) => {
+    if (req.headers.authorization !== API_SECRET_KEY) {
+        return res.status(401).json({ error: "No autorizado" });
+    }
+
     const data = req.body;
     console.log('Received RSVP:', data);
 
@@ -107,6 +140,25 @@ app.post('/api/rsvp', (req, res) => {
     res.json({ message: 'RSVP received' });
 });
 
+/**
+ * @swagger
+ * /api/rsvps/csv:
+ *   get:
+ *     summary: Descargar lista de invitados en formato CSV
+ *     tags: [Invitados]
+ *     security:
+ *       - ApiKeyAuth: []
+ *     responses:
+ *       200:
+ *         description: CSV file download
+ *         content:
+ *           text/csv:
+ *             schema:
+ *               type: string
+ *               format: binary
+ *       401:
+ *         description: No autorizado
+ */
 app.get('/api/rsvps/csv', (req, res) => {
     if (req.headers.authorization !== API_SECRET_KEY) {
         return res.status(401).json({ error: "No autorizado" });
@@ -129,6 +181,62 @@ app.get('/api/rsvps/csv', (req, res) => {
         return res.send(csv);
     });
 });
+
+/**
+ * @swagger
+ * /api/rsvps/excel:
+ *   get:
+ *     summary: Descargar lista de invitados en formato Excel (XLSX)
+ *     tags: [Invitados]
+ *     security:
+ *       - ApiKeyAuth: []
+ *     responses:
+ *       200:
+ *         description: Archivo Excel descargado
+ *         content:
+ *           application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+ *             schema:
+ *               type: string
+ *               format: binary
+ *       401:
+ *         description: No autorizado
+ */
+app.get('/api/rsvps/excel', (req, res) => {
+    if (req.headers.authorization !== API_SECRET_KEY) {
+        return res.status(401).json({ error: "No autorizado" });
+    }
+
+    db.all("SELECT * FROM invitados", [], async (err, rows) => {
+        if (err) {
+            return res.status(400).json({ "error": err.message });
+        }
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Invitados');
+
+        worksheet.columns = [
+            { header: 'ID', key: 'id', width: 5 },
+            { header: 'Nombre', key: 'nombre', width: 25 },
+            { header: 'Teléfono', key: 'telefono', width: 15 },
+            { header: 'Alergias', key: 'alergias', width: 30 },
+            { header: 'Catedral-Parador', key: 'autobus_catedral_parador', width: 20 },
+            { header: 'Parador-Albacete', key: 'autobus_parador_albacete', width: 20 },
+            { header: 'Mensaje', key: 'mensaje', width: 40 },
+            { header: 'Fecha', key: 'timestamp', width: 20 }
+        ];
+
+        rows.forEach(r => {
+            worksheet.addRow(r);
+        });
+
+        res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.attachment('invitados.xlsx');
+
+        await workbook.xlsx.write(res);
+        res.end();
+    });
+});
+
 
 app.get('/api/rsvps', (req, res) => {
     if (req.headers.authorization !== API_SECRET_KEY) {

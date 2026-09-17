@@ -9,7 +9,7 @@ const Alojamiento = () => {
                 {/* Header */}
                 <div className="text-center mb-6">
                     <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">Alojamiento</h2>
-                    <p className="text-stone-500 font-serif italic">Si queréis compartir con nosotros hasta el último minuto y, por vuestra comodidad, os recomendamos alojaros aquí. Tenéis un descuento especial por la boda llamando a este número de teléfono.</p>
+                    <p className="text-stone-500 font-serif italic">Tenéis un descuento especial por la boda llamando a este número de teléfono</p>
 
                 </div>
 
